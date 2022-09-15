@@ -42,7 +42,9 @@ WORKDIR /
 COPY bootstrap bootstrap
 RUN chmod 755 bootstrap
 RUN cp /lambda-app/target/lambda-app.jar lambda-app.jar
-RUN zip -r runtime.zip \
-    bootstrap \
-    lambda-app.jar \
+RUN zip -r lambda-app.zip \
+    lambda-app.jar
+
+RUN zip -r layer.zip \
+     bootstrap \
     /jre18-slim

@@ -13,6 +13,11 @@ Resources:
       SSESpecification:
         SSEEnabled: true
 
+  Java18RuntimeLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layer.zip
+
   GetItemFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -20,13 +25,15 @@ Resources:
       Handler: com.home.amazon.serverless.GetItemFunction::handleRequest
       Timeout: 60
       MemorySize: 512
-      CodeUri: runtime.zip
+      CodeUri: lambda-app.zip
       Environment:
         Variables:
           TABLE: !Ref ItemTable
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ItemTable
+      Layers:
+        - !Ref Java18RuntimeLayer
       Events:
         ApiEvent:
           Type: Api
