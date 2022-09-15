@@ -1,2 +1,5 @@
 /.aws-sam/
 /.idea/
+/samconfig.toml
+*.iml
+/lambda-app/target/
