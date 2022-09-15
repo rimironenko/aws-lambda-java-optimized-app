@@ -1,9 +1,14 @@
 #!/bin/sh
 
 # Remove a previously created custom runtime
-file="lambda-app.zip"
-if [ -f "$file" ] ; then
-    rm "$file"
+file1="lambda-app.zip"
+if [ -f "$file1" ] ; then
+    rm "$file1"
+fi
+
+file2="layer.zip"
+if [ -f "$file2" ] ; then
+    rm "$file2"
 fi
 
 # Build the custom Java runtime from the Dockerfile

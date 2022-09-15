@@ -3,3 +3,4 @@
 /samconfig.toml
 *.iml
 /lambda-app/target/
+*.zip
