@@ -30,12 +30,12 @@ RUN jlink --verbose \
     --strip-java-debug-attributes \
     --no-header-files \
     --no-man-pages \
-    --output /jre18-slim \
+    --output /jre-custom \
     --add-modules $(cat jre-deps.info)
 
 # Use Javas Application Class Data Sharing feature
 # It creates the file /jre18-slim/lib/server/classes.jsa
-RUN /jre18-slim/bin/java -Xshare:dump
+RUN /jre-custom/bin/java -Xshare:dump
 
 # Package everything together into a custom runtime archive
 WORKDIR /
@@ -47,4 +47,4 @@ RUN zip -r lambda-app.zip \
 
 RUN zip -r layer.zip \
      bootstrap \
-    /jre18-slim
+    /jre-custom
