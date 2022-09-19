@@ -16,16 +16,16 @@ import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
  */
 public class DynamoDbWriteHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    private static final DynamoDbEnhancedClient DYNAMO_DB_CLIENT = DependencyFactory.dynamoDbEnhancedClient();
+    private final DynamoDbEnhancedClient dynamoDbEnhancedClient = DependencyFactory.dynamoDbEnhancedClient();
     private static final String TABLE_NAME = DependencyFactory.tableName();
     private static final TableSchema<DataModel> TABLE_SCHEMA = TableSchema.fromBean(DataModel.class);
+    private final DynamoDbTable<DataModel> itemTable = dynamoDbEnhancedClient.table(TABLE_NAME, TABLE_SCHEMA);
 
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent request, Context context) {
-        DynamoDbTable<DataModel> booksTable = DYNAMO_DB_CLIENT.table(TABLE_NAME, TABLE_SCHEMA);
         DataModel dataModel = new DataModel();
         dataModel.setId(context.getAwsRequestId());
-        booksTable.putItem(dataModel);
+        itemTable.putItem(dataModel);
         return new APIGatewayProxyResponseEvent()
                 .withStatusCode(200);
     }

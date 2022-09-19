@@ -145,12 +145,14 @@
                                 <phase>package</phase>
                             </execution>
                         </executions>
-                       <!--<configuration>
-                            <buildArgs>
-                                <arg></arg>
-                                <arg></arg>
-                            </buildArgs>
-                        </configuration>-->
+                       <configuration>
+                           <mainClass>com.amazonaws.services.lambda.runtime.api.client.AWSLambda</mainClass>
+                           <buildArgs>
+                               <!-- required for AWS Lambda Runtime Interface Client -->
+                               <arg>--enable-url-protocols=http</arg>
+                               <arg>--add-opens java.base/java.util=ALL-UNNAMED</arg>
+                           </buildArgs>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
