@@ -9,7 +9,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 /**
- * The module containing all dependencies required by the {@link GetItemFunction}.
+ * The module containing all dependencies required by the {@link DynamoDbWriteHandler}.
  */
 public class DependencyFactory {
 

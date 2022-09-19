@@ -22,7 +22,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: provided.al2
-      Handler: com.home.amazon.serverless.GetItemFunction::handleRequest
+      Handler: com.home.amazon.serverless.DynamoDbWriteHandler::handleRequest
       Timeout: 60
       MemorySize: 512
       CodeUri: lambda-app-graalvm.zip
@@ -30,7 +30,7 @@ Resources:
         Variables:
           TABLE: !Ref ItemTable
       Policies:
-        - DynamoDBReadPolicy:
+        - DynamoDBWritePolicy:
             TableName: !Ref ItemTable
       Layers:
         - !Ref Java17GraalvmRuntimeLayer
@@ -38,5 +38,9 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            Path: /items/{id}
-            Method: get
+            Path: /items/
+            Method: post
+
+Outputs:
+  ApiEndpoint:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/items/"
