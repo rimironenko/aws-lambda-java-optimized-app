@@ -18,7 +18,7 @@ Resources:
     Properties:
       ContentUri: layer.zip
 
-  GetItemFunction:
+  DynamoDbWriteHandler:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: provided.al2
