@@ -1,11 +1,12 @@
 #!/bin/sh
 
-# Remove a previously created custom runtime
+# Remove a previously created application
 file1="lambda-app.zip"
 if [ -f "$file1" ] ; then
     rm "$file1"
 fi
 
+# Remove a previously created custom layer
 file2="layer.zip"
 if [ -f "$file2" ] ; then
     rm "$file2"

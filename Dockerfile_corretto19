@@ -4,11 +4,11 @@ FROM --platform=linux/amd64 amazonlinux:2
 RUN rpm --import https://yum.corretto.aws/corretto.key
 RUN curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
 
-# Update the packages and install Amazon Corretto 18, Maven and Zip
+# Update the packages and install Amazon Corretto 19, Maven and Zip
 RUN yum -y update
 RUN yum install -y java-19-amazon-corretto-devel maven zip
 
-# Set Java 18 as the default
+# Set Java 19 as the default
 RUN update-alternatives --set java "/usr/lib/jvm/java-19-amazon-corretto/bin/java"
 RUN update-alternatives --set javac "/usr/lib/jvm/java-19-amazon-corretto/bin/javac"
 
@@ -24,7 +24,7 @@ RUN jdeps -q \
     --print-module-deps \
     target/lambda-app.jar > jre-deps.info
 
-# Create a slim Java 18 JRE which only contains the required modules to run the function
+# Create a slim Java 19 JRE which only contains the required modules to run the function
 RUN jlink --verbose \
     --compress 2 \
     --strip-java-debug-attributes \
@@ -34,7 +34,7 @@ RUN jlink --verbose \
     --add-modules $(cat jre-deps.info)
 
 # Use Javas Application Class Data Sharing feature
-# It creates the file /jre18-slim/lib/server/classes.jsa
+# It creates the file /jre18-custom/lib/server/classes.jsa
 RUN /jre-custom/bin/java -Xshare:dump
 
 # Package everything together into a custom runtime archive

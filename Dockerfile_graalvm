@@ -44,7 +44,7 @@ RUN jdeps -q \
     --print-module-deps \
     target/lambda-app.jar > jre-deps.info
 
-# Create a slim Java 18 JRE which only contains the required modules to run the function
+# Create a slim Java 17 GraalVM JRE which only contains the required modules to run the function
 RUN jlink --verbose \
     --compress 2 \
     --strip-java-debug-attributes \
@@ -54,7 +54,7 @@ RUN jlink --verbose \
     --add-modules $(cat jre-deps.info)
 
 # Use Javas Application Class Data Sharing feature
-# It creates the file /jre18-slim/lib/server/classes.jsa
+# It creates the file /jre-custom/lib/server/classes.jsa
 RUN /jre-custom/bin/java -Xshare:dump
 
 # Package everything together into a custom runtime archive
