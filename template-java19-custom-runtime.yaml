@@ -13,7 +13,7 @@ Resources:
       SSESpecification:
         SSEEnabled: true
 
-  Java18RuntimeLayer:
+  Java19RuntimeLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
       ContentUri: layer.zip
@@ -33,7 +33,7 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: !Ref ItemTable
       Layers:
-        - !Ref Java18RuntimeLayer
+        - !Ref Java19RuntimeLayer
       Events:
         ApiEvent:
           Type: Api
