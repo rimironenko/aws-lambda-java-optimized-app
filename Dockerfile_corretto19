@@ -6,11 +6,11 @@ RUN curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.
 
 # Update the packages and install Amazon Corretto 18, Maven and Zip
 RUN yum -y update
-RUN yum install -y java-18-amazon-corretto-devel maven zip
+RUN yum install -y java-19-amazon-corretto-devel maven zip
 
 # Set Java 18 as the default
-RUN update-alternatives --set java "/usr/lib/jvm/java-18-amazon-corretto/bin/java"
-RUN update-alternatives --set javac "/usr/lib/jvm/java-18-amazon-corretto/bin/javac"
+RUN update-alternatives --set java "/usr/lib/jvm/java-19-amazon-corretto/bin/java"
+RUN update-alternatives --set javac "/usr/lib/jvm/java-19-amazon-corretto/bin/javac"
 
 # Copy the software folder to the image and build the function
 COPY lambda-app lambda-app
@@ -20,7 +20,7 @@ RUN mvn clean package
 # Find JDK module dependencies dynamically from the uber jar
 RUN jdeps -q \
     --ignore-missing-deps \
-    --multi-release 18 \
+    --multi-release 19 \
     --print-module-deps \
     target/lambda-app.jar > jre-deps.info
 

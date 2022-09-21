@@ -12,8 +12,8 @@ if [ -f "$file2" ] ; then
 fi
 
 # Build the custom Java runtime from the Dockerfile
-docker build -f Dockerfile --progress=plain -t lambda-custom-runtime-minimal-jre-18-x86 .
+docker build -f Dockerfile_corretto19 --progress=plain -t lambda-custom-runtime-minimal-jre-19-x86 .
 
 # Extract the runtime.zip from the Docker environment and store it locally
-docker run --rm --entrypoint cat lambda-custom-runtime-minimal-jre-18-x86 lambda-app.zip > lambda-app.zip
-docker run --rm --entrypoint cat lambda-custom-runtime-minimal-jre-18-x86 layer.zip > layer.zip
+docker run --rm --entrypoint cat lambda-custom-runtime-minimal-jre-19-x86 lambda-app.zip > lambda-app.zip
+docker run --rm --entrypoint cat lambda-custom-runtime-minimal-jre-19-x86 layer.zip > layer.zip
