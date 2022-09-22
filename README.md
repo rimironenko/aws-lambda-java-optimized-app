@@ -1,9 +1,9 @@
 # aws-lambda-java-optimized-app
 
 This project contains an AWS Lambda Maven application and scripts to pachage and deploy it in three different ways:
-- As a Lambda function with Java 11 runtime
-- As a Lambda function with custom GraalVM Java 17 runtime packaged as the Lambda Layer
-- As a Lambda function with custom Java 19 (Amazon Corretto) runtime packaged as the Lambda layer
+- As a Lambda function with Java 11 runtime.
+- As a Lambda function with custom GraalVM Java 17 runtime packaged as the Lambda Layer.
+- As a Lambda function with custom Java 19 (Amazon Corretto) runtime packaged as the Lambda layer.
 
 All the options can be tested by the Artillery script to collect a performance benchmark.
 
