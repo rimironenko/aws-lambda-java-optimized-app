@@ -1,6 +1,6 @@
 # aws-lambda-java-optimized-app
 
-This project contains an AWS Lambda Maven application and scripts to pachage and deploy it in three different ways:
+This project contains an AWS Lambda Maven application and scripts to package and deploy it in three different ways:
 - As a Lambda function with Java 11 runtime.
 - As a Lambda function with custom GraalVM Java 17 runtime packaged as the Lambda Layer.
 - As a Lambda function with custom Java 19 (Amazon Corretto) runtime packaged as the Lambda layer.
@@ -31,8 +31,8 @@ The architecture is presented in the picture given below.
 ## Project structure
 - [lambda-app](lambda-app): The Maven application with the code of the Lambda function
 - [bootstrap](bootstrap): The file required by a custom runtime that Lambda runs. Please read https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html to learn more.
-- [build-java17-graalvm.sh](build-java17-graalvm.sh): The file to build ZIP files with Lambda code an layer for GraalVM Java 17 deployment option (custom runtime).
-- [build-java19-custom.sh](build-java19-custom.sh): The file to build ZIP files with Lambda code an layer for Amazon Corretto Java 19 deployment option (custom runtime).
+- [build-java17-graalvm.sh](build-java17-graalvm.sh): The file to build ZIP files with Lambda code and layer for GraalVM Java 17 deployment option (custom runtime).
+- [build-java19-custom.sh](build-java19-custom.sh): The file to build ZIP files with Lambda code and layer for Amazon Corretto Java 19 deployment option (custom runtime).
 - [Dockerfile_graalvm](Dockerfile_graalvm): Docker file to build GraalVM Java 17 artifacts inside Docker container on Amazon Linux 2.
 - [Dockerfile_corretto19](Dockerfile_corretto19): Docker file to build Amazon Corretto Java 19 artifacts inside Docker container on Amazon Linux 2.
 - [loadtest.yaml](loadtest.yaml): Artillery load test.
